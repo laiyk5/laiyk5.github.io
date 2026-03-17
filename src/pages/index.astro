@@ -1,17 +1,167 @@
 ---
+import '../styles/global.css';
 
+// Personal information - Edit these to customize your site
+const personalInfo = {
+  name: "Lai Yikai",
+  initials: "LYK",
+  title: "Master's Student",
+  affiliation: "City University of Hong Kong / College of Computing",
+  bio: "I'm a master's student passionate about advancing knowledge in my field. My research focuses on exploring novel approaches to challenging problems. I'm always eager to collaborate and discuss new ideas.",
+  email: "yikailai2-c@my.cityu.edu.hk",
+  github: "https://github.com/laiyk5",
+  scholar: "",  // Add your Google Scholar URL when you have publications
+  twitter: "https://x.com/LaiAlex6",
+};
+
+const researchInterests = [
+  "Machine Learning",
+  "Computer Vision",
+  "Natural Language Processing",
+  "Scientific Computing",
+  // Add or modify research interests
+];
+
+const recentPapers = [
+  {
+    title: "Your Research Paper Title",
+    authors: "Your Name, Co-author Name",
+    venue: "Conference/Journal Name 2024",
+    link: "#",
+    code: "#",
+  },
+  // Add more papers as needed
+];
+
+const projects = [
+  {
+    title: "Research Project Name",
+    description: "Brief description of your project and its significance.",
+    link: "#",
+  },
+  // Add more projects as needed
+];
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={`${personalInfo.name} - ${personalInfo.title} at ${personalInfo.affiliation}`} />
+    <title>{personalInfo.name} - {personalInfo.title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <nav class="container">
+        <a href="/" class="logo">{personalInfo.initials}</a>
+        <ul class="nav-links">
+          <li><a href="#research">Research</a></li>
+          <li><a href="#publications">Publications</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="https://laiyk5.github.io/Notes" target="_blank" rel="noopener">Notes</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <div class="profile">
+          <div class="profile-avatar">{personalInfo.initials}</div>
+          <div class="profile-info">
+            <h1>{personalInfo.name}</h1>
+            <p class="subtitle">{personalInfo.title}</p>
+            <p class="affiliation">{personalInfo.affiliation}</p>
+            <p class="bio">{personalInfo.bio}</p>
+            <div class="social-links">
+              <a href={`mailto:${personalInfo.email}`}>Email</a>
+              <a href={personalInfo.github} target="_blank" rel="noopener">GitHub</a>
+              {personalInfo.scholar && <a href={personalInfo.scholar} target="_blank" rel="noopener">Google Scholar</a>}
+              {personalInfo.twitter && <a href={personalInfo.twitter} target="_blank" rel="noopener">Twitter</a>}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <main class="container">
+      <!-- Research Interests -->
+      <section id="research">
+        <h2>Research Interests</h2>
+        <div class="research-tags">
+          {researchInterests.map(interest => (
+            <span class="research-tag">{interest}</span>
+          ))}
+        </div>
+      </section>
+
+      <!-- Publications -->
+      <section id="publications">
+        <h2>Publications</h2>
+        <div class="card-grid">
+          {recentPapers.map(paper => (
+            <article class="card">
+              <h3><a href={paper.link} target="_blank" rel="noopener">{paper.title}</a></h3>
+              <p>{paper.authors}</p>
+              <div class="meta">
+                <span>{paper.venue}</span>
+                {paper.code && <span>• <a href={paper.code} target="_blank" rel="noopener">Code</a></span>}
+              </div>
+            </article>
+          ))}
+        </div>
+        
+        <!-- Empty state message if no papers -->
+        {recentPapers.length === 0 && (
+          <p style="color: var(--color-text-light);">Publications coming soon! 🚀</p>
+        )}
+      </section>
+
+      <!-- Projects -->
+      <section id="projects">
+        <h2>Projects</h2>
+        <div class="card-grid">
+          {projects.map(project => (
+            <article class="card">
+              <h3><a href={project.link} target="_blank" rel="noopener">{project.title}</a></h3>
+              <p>{project.description}</p>
+            </article>
+          ))}
+        </div>
+        
+        <!-- Empty state message if no projects -->
+        {projects.length === 0 && (
+          <p style="color: var(--color-text-light);">Projects coming soon! 🔬</p>
+        )}
+      </section>
+
+      <!-- Notes Section -->
+      <section id="notes">
+        <h2>Research Notes</h2>
+        <p>
+          I maintain a collection of research notes, literature reviews, and learning materials exported from my 
+          <a href="https://obsidian.md" target="_blank" rel="noopener">Obsidian</a> vault.
+        </p>
+        <p style="margin-top: 1rem;">
+          <a href="https://laiyk5.github.io/Notes" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.25rem; background: var(--color-primary); color: white; border-radius: 0.5rem; font-weight: 500;">
+            Browse Notes ↗
+          </a>
+        </p>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <p>© {new Date().getFullYear()} {personalInfo.name}. Built with <a href="https://astro.build" target="_blank" rel="noopener">Astro</a>.</p>
+      </div>
+    </footer>
+  </body>
 </html>
