@@ -5,10 +5,10 @@ import '../styles/global.css';
 const personalInfo = {
   name: "Lai Yikai",
   initials: "LYK",
-  title: "Master's Student",
+  title: "Master's Student in Computer Science",
   affiliation: "City University of Hong Kong / College of Computing",
-  bio: "I'm a master's student passionate about advancing knowledge in my field. My research focuses on exploring novel approaches to challenging problems. I'm always eager to collaborate and discuss new ideas.",
-  email: "yikailai2-c@my.cityu.edu.hk",
+  bio: "I'm a master's student in computer science at City University of Hong Kong. My interests span machine learning, graph neural networks, and LLM-driven systems. I enjoy building practical AI systems — from RAG-powered chatbots to evolutionary algorithms for optimization problems.",
+  email: "laiyk5@163.com",
   github: "https://github.com/laiyk5",
   scholar: "",  // Add your Google Scholar URL when you have publications
   twitter: "https://x.com/LaiAlex6",
@@ -16,31 +16,64 @@ const personalInfo = {
 
 const researchInterests = [
   "Machine Learning",
-  "Artificial Intelligence",
+  "Graph Neural Networks",
+  "Retrieval-Augmented Generation",
+  "Evolutionary Algorithms",
+  "Natural Language Processing",
   "Data Science",
-  "Financial Technology",
-  // Add or modify research interests
 ];
 
-const recentPapers = [
+const education = [
   {
-    title: "Your Research Paper Title",
-    authors: "Your Name, Co-author Name",
-    venue: "Conference/Journal Name 2024",
-    link: "#",
-    code: "#",
+    degree: "Master's Degree in Computer Science",
+    school: "City University of Hong Kong",
+    location: "Hong Kong SAR",
+    period: "2025 – 2026",
   },
-  // Add more papers as needed
+  {
+    degree: "Bachelor's Degree in Computer Science",
+    school: "Sun Yat-sen University",
+    location: "Guangzhou, China",
+    period: "2019 – 2023",
+  },
+];
+
+const experiences = [
+  {
+    role: "Algorithm Intern",
+    company: "PCI",
+    period: "2025",
+    description: "Deeply involved in chatbot development and RAG system implementation. Digitalized and structured 1000+ rich-text company documents. Designed a RAG evaluation pipeline using real feedback from internal users, helping employees better navigate company policies.",
+  },
 ];
 
 const projects = [
   {
-    title: "Research Project Name",
-    description: "Brief description of your project and its significance.",
+    title: "CVRP FunSearch",
+    description: "Applied FunSearch, an LLM-driven evolutionary meta-algorithm proposed by Google, to solve the Capacitated Vehicle Routing Problem. Compared different LLMs and seeding algorithms. Evolved an algorithm that beats the baseline using DeepSeek V4 with just $1 in API costs, verifying the feasibility of this novel algorithm discovery pattern.",
     link: "#",
   },
-  // Add more projects as needed
+  {
+    title: "PCI Chatbot",
+    description: "Built a RAG-powered internal chatbot during internship at PCI. Digitalized and structured 1000+ rich-text documents, optimized retrieval quality through systematic evaluation using real user feedback, enabling employees to better understand company rules and policies.",
+    link: "#",
+  },
+  {
+    title: "Protein-Protein Interaction Prediction",
+    description: "Bachelor's degree project. Designed and trained a graph neural network that leverages amino acid sequence features and 3D protein structures to predict protein-protein interactions.",
+    link: "#",
+  },
 ];
+
+const prizes = [
+  {
+    title: "Third Prize — International Contest of Autonomous and Intelligent Robots",
+    year: "2021",
+    description: "Competed against over 100 international teams in autonomous navigation and AI algorithms. Used traditional algorithms for robot perception and obstacle response.",
+  },
+];
+
+const recentPapers: { title: string; authors: string; venue: string; link: string; code: string }[] = [];
 ---
 
 <html lang="en">
@@ -63,9 +96,11 @@ const projects = [
         <a href="/" class="logo">{personalInfo.initials}</a>
         <ul class="nav-links">
           <li><a href="#research">Research</a></li>
-          <li><a href="#publications">Publications</a></li>
+          <li><a href="#education">Education</a></li>
+          <li><a href="#experience">Experience</a></li>
           <li><a href="#projects">Projects</a></li>
-          <li><a href="https://laiyk5.github.io/Notes" target="_blank" rel="noopener">Notes</a></li>
+          <li><a href="#awards">Awards</a></li>
+          <li><a href="https://laiyk5.github.io/my-obsidian-site" target="_blank" rel="noopener">Notes</a></li>
         </ul>
       </nav>
     </header>
@@ -102,26 +137,36 @@ const projects = [
         </div>
       </section>
 
-      <!-- Publications -->
-      <section id="publications">
-        <h2>Publications</h2>
+      <!-- Education -->
+      <section id="education">
+        <h2>Education</h2>
         <div class="card-grid">
-          {recentPapers.map(paper => (
+          {education.map(edu => (
             <article class="card">
-              <h3><a href={paper.link} target="_blank" rel="noopener">{paper.title}</a></h3>
-              <p>{paper.authors}</p>
+              <h3>{edu.degree}</h3>
+              <p>{edu.school} — {edu.location}</p>
               <div class="meta">
-                <span>{paper.venue}</span>
-                {paper.code && <span>• <a href={paper.code} target="_blank" rel="noopener">Code</a></span>}
+                <span>{edu.period}</span>
               </div>
             </article>
           ))}
         </div>
-        
-        <!-- Empty state message if no papers -->
-        {recentPapers.length === 0 && (
-          <p style="color: var(--color-text-light);">Publications coming soon! 🚀</p>
-        )}
+      </section>
+
+      <!-- Experience -->
+      <section id="experience">
+        <h2>Experience</h2>
+        <div class="card-grid">
+          {experiences.map(exp => (
+            <article class="card">
+              <h3>{exp.role} @ {exp.company}</h3>
+              <div class="meta">
+                <span>{exp.period}</span>
+              </div>
+              <p style="margin-top: 0.75rem;">{exp.description}</p>
+            </article>
+          ))}
+        </div>
       </section>
 
       <!-- Projects -->
@@ -135,10 +180,42 @@ const projects = [
             </article>
           ))}
         </div>
-        
-        <!-- Empty state message if no projects -->
-        {projects.length === 0 && (
-          <p style="color: var(--color-text-light);">Projects coming soon! 🔬</p>
+      </section>
+
+      <!-- Awards -->
+      <section id="awards">
+        <h2>Awards</h2>
+        <div class="card-grid">
+          {prizes.map(prize => (
+            <article class="card">
+              <h3>{prize.title}</h3>
+              <div class="meta">
+                <span>{prize.year}</span>
+              </div>
+              <p style="margin-top: 0.75rem;">{prize.description}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <!-- Publications -->
+      <section id="publications">
+        <h2>Publications</h2>
+        {recentPapers.length > 0 ? (
+          <div class="card-grid">
+            {recentPapers.map(paper => (
+              <article class="card">
+                <h3><a href={paper.link} target="_blank" rel="noopener">{paper.title}</a></h3>
+                <p>{paper.authors}</p>
+                <div class="meta">
+                  <span>{paper.venue}</span>
+                  {paper.code && <span>• <a href={paper.code} target="_blank" rel="noopener">Code</a></span>}
+                </div>
+              </article>
+            ))}
+          </div>
+        ) : (
+          <p style="color: var(--color-text-light);">Publications coming soon! 🚀</p>
         )}
       </section>
 
@@ -147,7 +224,7 @@ const projects = [
         <h2>Research Notes</h2>
         <p>I maintain a collection of research notes and learning materials.</p>
         <p style="margin-top: 1rem;">
-          <a href="https://laiyk5.github.io/Notes" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.25rem; background: var(--color-primary); color: white; border-radius: 0.5rem; font-weight: 500;">
+          <a href="https://laiyk5.github.io/my-obsidian-site" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.25rem; background: var(--color-primary); color: white; border-radius: 0.5rem; font-weight: 500;">
             Browse Notes ↗
           </a>
         </p>
