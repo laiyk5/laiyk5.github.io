@@ -1,0 +1,59 @@
+---
+import SiteLayout from "../layouts/SiteLayout.astro";
+import { achievements, personalInfo } from "../data/site";
+---
+
+<SiteLayout
+  title="Achievements"
+  description={`Selected work and milestones from ${personalInfo.name}.`}
+>
+  <section class="page-section subpage-hero">
+    <div class="container narrow-stack">
+      <p class="eyebrow">Achievements</p>
+      <h1>Selected work, milestones, and progress so far.</h1>
+      <p class="hero-body">
+        This is the shorter record of what I have built, studied, and been recognized for up to now.
+      </p>
+    </div>
+  </section>
+
+  <section class="page-section">
+    <div class="container">
+      <div class="section-heading compact-heading">
+        <p class="section-kicker">Projects</p>
+        <h2>Work that best represents how I think and build.</h2>
+      </div>
+      <div class="destination-grid">
+        {achievements.highlights.map((item) => (
+          <article class="destination-card tall-card">
+            <div>
+              <span class="card-label">{item.meta}</span>
+              <h3>{item.title}</h3>
+              <p>{item.description}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="page-section">
+    <div class="container">
+      <div class="section-heading compact-heading">
+        <p class="section-kicker">Timeline</p>
+        <h2>A few points that shaped the path.</h2>
+      </div>
+      <div class="timeline-list">
+        {achievements.timeline.map((item) => (
+          <article class="timeline-row">
+            <span class="card-label">{item.year}</span>
+            <div>
+              <h3>{item.title}</h3>
+              <p>{item.detail}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</SiteLayout>

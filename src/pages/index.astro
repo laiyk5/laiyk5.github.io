@@ -1,253 +1,119 @@
 ---
-import '../styles/global.css';
+import SiteLayout from "../layouts/SiteLayout.astro";
+import { internalPages, personalInfo, quickDestinations, snapshotItems } from "../data/site";
 
-// Personal information - Edit these to customize your site
-const personalInfo = {
-  name: "Yikai Lai",
-  initials: "Kai",
-  title: "Master's Student in Computer Science",
-  affiliation: "City University of Hong Kong / College of Computing",
-  bio: "I'm a master's student in computer science at City University of Hong Kong. My interests span machine learning, graph neural networks, and LLM-driven systems. I enjoy building practical AI systems — from RAG-powered chatbots to evolutionary algorithms for optimization problems.",
-  email: "laiyk5@163.com",
-  github: "https://github.com/laiyk5",
-  scholar: "",  // Add your Google Scholar URL when you have publications
-  twitter: "https://x.com/LaiAlex6",
-};
-
-const researchInterests = [
-  "Machine Learning",
-  "Graph Neural Networks",
-  "Retrieval-Augmented Generation",
-  "Evolutionary Algorithms",
-  "Natural Language Processing",
-  "Data Science",
-];
-
-const education = [
-  {
-    degree: "Master's Degree in Computer Science",
-    school: "City University of Hong Kong",
-    location: "Hong Kong SAR",
-    period: "2025 – 2026",
-  },
-  {
-    degree: "Bachelor's Degree in Computer Science",
-    school: "Sun Yat-sen University",
-    location: "Guangzhou, China",
-    period: "2019 – 2023",
-  },
-];
-
-const experiences = [
-  {
-    role: "Algorithm Intern",
-    company: "PCI",
-    period: "2025",
-    description: "Deeply involved in chatbot development and RAG system implementation. Digitalized and structured 1000+ rich-text company documents. Designed a RAG evaluation pipeline using real feedback from internal users, helping employees better navigate company policies.",
-  },
-];
-
-const projects = [
-  {
-    title: "CVRP FunSearch",
-    description: "Applied FunSearch, an LLM-driven evolutionary meta-algorithm proposed by Google, to solve the Capacitated Vehicle Routing Problem. Compared different LLMs and seeding algorithms. Evolved an algorithm that beats the baseline using DeepSeek V4 with just $1 in API costs, verifying the feasibility of this novel algorithm discovery pattern.",
-    link: "#",
-  },
-  {
-    title: "PCI Chatbot",
-    description: "Built a RAG-powered internal chatbot during internship at PCI. Digitalized and structured 1000+ rich-text documents, optimized retrieval quality through systematic evaluation using real user feedback, enabling employees to better understand company rules and policies.",
-    link: "#",
-  },
-  {
-    title: "Protein-Protein Interaction Prediction",
-    description: "Bachelor's degree project. Designed and trained a graph neural network that leverages amino acid sequence features and 3D protein structures to predict protein-protein interactions.",
-    link: "#",
-  },
-];
-
-const prizes = [
-  {
-    title: "Third Prize — International Contest of Autonomous and Intelligent Robots",
-    year: "2021",
-    description: "Competed against over 100 international teams in autonomous navigation and AI algorithms. Used traditional algorithms for robot perception and obstacle response.",
-  },
-];
-
-const recentPapers: { title: string; authors: string; venue: string; link: string; code: string }[] = [];
+const coreTopics = ["RAG systems", "Graph learning", "Knowledge tools"];
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <meta name="description" content={`${personalInfo.name} - ${personalInfo.title} at ${personalInfo.affiliation}`} />
-    <title>{personalInfo.name} - {personalInfo.title}</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  </head>
-  <body>
-    <!-- Header -->
-    <header>
-      <nav class="container">
-        <a href="/" class="logo">{personalInfo.initials}</a>
-        <ul class="nav-links">
-          <li><a href="#research">Research</a></li>
-          <li><a href="#education">Education</a></li>
-          <li><a href="#experience">Experience</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#awards">Awards</a></li>
-          <li><a href="https://laiyk5.github.io/blog" target="_blank" rel="noopener">Blog</a></li>
-          <li><a href="https://laiyk5.github.io/my-obsidian-site" target="_blank" rel="noopener">Notes</a></li>
-        </ul>
-      </nav>
-    </header>
+<SiteLayout
+  title="Home"
+  description={`${personalInfo.name} is a machine learning builder working on retrieval systems, graph learning, and knowledge tools.`}
+>
+  <section class="page-section hero-simple">
+    <div class="container hero-simple-grid">
+      <div class="hero-main">
+        <p class="eyebrow">Yikai Lai</p>
+        <h1>{personalInfo.title}</h1>
+        <p class="hero-lead">{personalInfo.subtitle}</p>
+        <p class="hero-body">
+          I am currently studying at {personalInfo.affiliation} in {personalInfo.location}. I like
+          building AI systems that are useful, testable, and easier for people to navigate.
+        </p>
+        <div class="topic-row" aria-label="Core topics">
+          {coreTopics.map((topic) => (
+            <span class="topic-pill">{topic}</span>
+          ))}
+        </div>
+      </div>
+      <aside class="identity-card profile-card">
+        <div class="profile-photo-wrap">
+          <img
+            class="profile-photo"
+            src="/images/yikai-portrait.jpg"
+            alt={`Portrait of ${personalInfo.name}`}
+          />
+        </div>
+        <div class="identity-top">
+          <div>
+            <strong>{personalInfo.name}</strong>
+            <p>{personalInfo.affiliation}</p>
+          </div>
+        </div>
+        <div class="profile-meta">
+          <div>
+            <span class="card-label">Based in</span>
+            <p>{personalInfo.location}</p>
+          </div>
+          <div>
+            <span class="card-label">Working on</span>
+            <p>Retrieval quality, graph models, and information-rich tools.</p>
+          </div>
+        </div>
+        <div class="identity-links">
+          <a href={`mailto:${personalInfo.email}`}>{personalInfo.email}</a>
+          <a href={personalInfo.github} target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </aside>
+    </div>
+  </section>
 
-    <!-- Hero Section -->
-    <section class="hero">
-      <div class="container">
-        <div class="profile">
-          <div class="profile-avatar">{personalInfo.initials}</div>
-          <div class="profile-info">
-            <h1>{personalInfo.name}</h1>
-            <p class="subtitle">{personalInfo.title}</p>
-            <p class="affiliation">{personalInfo.affiliation}</p>
-            <p class="bio">{personalInfo.bio}</p>
-            <div class="social-links">
-              <a href={`mailto:${personalInfo.email}`}>Email</a>
-              <a href={personalInfo.github} target="_blank" rel="noopener">GitHub</a>
-              {personalInfo.scholar && <a href={personalInfo.scholar} target="_blank" rel="noopener">Google Scholar</a>}
-              {personalInfo.twitter && <a href={personalInfo.twitter} target="_blank" rel="noopener">Twitter</a>}
+  <section class="page-section glance-section">
+    <div class="container">
+      <div class="section-heading compact-heading">
+        <p class="section-kicker">At a glance</p>
+        <h2>Who I am and what I do.</h2>
+      </div>
+      <div class="snapshot-grid">
+        {snapshotItems.map((item) => (
+          <article class="info-card">
+            <span class="card-label">{item.label}</span>
+            <p>{item.value}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="page-section">
+    <div class="container">
+      <div class="section-heading compact-heading">
+        <p class="section-kicker">Main destinations</p>
+        <h2>Go straight to the places that matter.</h2>
+      </div>
+      <div class="destination-grid featured-grid">
+        {quickDestinations.map((item) => (
+          <article class="destination-card destination-card-strong">
+            <div>
+              <span class="card-label">{item.title}</span>
+              <p>{item.description}</p>
             </div>
-          </div>
-        </div>
+            <a href={item.href} target="_blank" rel="noopener" class="external-link">
+              <span>{item.cta}</span>
+              <span class="external-icon" aria-hidden="true">↗</span>
+            </a>
+          </article>
+        ))}
       </div>
-    </section>
+    </div>
+  </section>
 
-    <main class="container">
-      <!-- Research Interests -->
-      <section id="research">
-        <h2>Research Interests</h2>
-        <div class="research-tags">
-          {researchInterests.map(interest => (
-            <span class="research-tag">{interest}</span>
-          ))}
-        </div>
-      </section>
-
-      <!-- Education -->
-      <section id="education">
-        <h2>Education</h2>
-        <div class="card-grid">
-          {education.map(edu => (
-            <article class="card">
-              <h3>{edu.degree}</h3>
-              <p>{edu.school} — {edu.location}</p>
-              <div class="meta">
-                <span>{edu.period}</span>
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <!-- Experience -->
-      <section id="experience">
-        <h2>Experience</h2>
-        <div class="card-grid">
-          {experiences.map(exp => (
-            <article class="card">
-              <h3>{exp.role} @ {exp.company}</h3>
-              <div class="meta">
-                <span>{exp.period}</span>
-              </div>
-              <p style="margin-top: 0.75rem;">{exp.description}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <!-- Projects -->
-      <section id="projects">
-        <h2>Projects</h2>
-        <div class="card-grid">
-          {projects.map(project => (
-            <article class="card">
-              <h3><a href={project.link} target="_blank" rel="noopener">{project.title}</a></h3>
-              <p>{project.description}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <!-- Awards -->
-      <section id="awards">
-        <h2>Awards</h2>
-        <div class="card-grid">
-          {prizes.map(prize => (
-            <article class="card">
-              <h3>{prize.title}</h3>
-              <div class="meta">
-                <span>{prize.year}</span>
-              </div>
-              <p style="margin-top: 0.75rem;">{prize.description}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <!-- Publications -->
-      <section id="publications">
-        <h2>Publications</h2>
-        {recentPapers.length > 0 ? (
-          <div class="card-grid">
-            {recentPapers.map(paper => (
-              <article class="card">
-                <h3><a href={paper.link} target="_blank" rel="noopener">{paper.title}</a></h3>
-                <p>{paper.authors}</p>
-                <div class="meta">
-                  <span>{paper.venue}</span>
-                  {paper.code && <span>• <a href={paper.code} target="_blank" rel="noopener">Code</a></span>}
-                </div>
-              </article>
-            ))}
-          </div>
-        ) : (
-          <p style="color: var(--color-text-light);">Publications coming soon! 🚀</p>
-        )}
-      </section>
-
-      <!-- Blog Section -->
-      <section id="blog">
-        <h2>Blog</h2>
-        <p>I write about technology, methodology, and my experiences.</p>
-        <p style="margin-top: 1rem;">
-          <a href="https://laiyk5.github.io/blog" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.25rem; background: var(--color-primary); color: white; border-radius: 0.5rem; font-weight: 500;">
-            Visit Blog ↗
-          </a>
-        </p>
-      </section>
-
-      <!-- Notes Section -->
-      <section id="notes">
-        <h2>Research Notes</h2>
-        <p>I maintain a collection of research notes and learning materials.</p>
-        <p style="margin-top: 1rem;">
-          <a href="https://laiyk5.github.io/my-obsidian-site" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.25rem; background: var(--color-primary); color: white; border-radius: 0.5rem; font-weight: 500;">
-            Browse Notes ↗
-          </a>
-        </p>
-      </section>
-    </main>
-
-    <!-- Footer -->
-    <footer>
-      <div class="container">
-        <p>© {new Date().getFullYear()} {personalInfo.name}. Built with <a href="https://astro.build" target="_blank" rel="noopener">Astro</a>.</p>
+  <section class="page-section">
+    <div class="container">
+      <div class="section-heading compact-heading">
+        <p class="section-kicker">More about me</p>
+        <h2>Open a subpage if you want the longer version.</h2>
       </div>
-    </footer>
-  </body>
-</html>
+      <div class="subpage-grid">
+        {internalPages.map((item) => (
+          <article class="subpage-card">
+            <div>
+              <span class="card-label">{item.title}</span>
+              <p>{item.description}</p>
+            </div>
+            <a href={item.href}>Open page</a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</SiteLayout>

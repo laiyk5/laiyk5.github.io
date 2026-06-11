@@ -1,0 +1,49 @@
+---
+import SiteLayout from "../layouts/SiteLayout.astro";
+import { personalInfo, visionPoints } from "../data/site";
+---
+
+<SiteLayout
+  title="Vision"
+  description={`How ${personalInfo.name} thinks about useful AI systems and future work.`}
+>
+  <section class="page-section subpage-hero">
+    <div class="container narrow-stack">
+      <p class="eyebrow">Vision</p>
+      <h1>The kind of systems I want to keep building.</h1>
+      <p class="hero-body">
+        I am most interested in AI work that helps people move through difficult information more clearly,
+        and in the engineering choices that make that experience reliable.
+      </p>
+    </div>
+  </section>
+
+  <section class="page-section">
+    <div class="container vision-grid">
+      {visionPoints.map((item) => (
+        <article class="info-card vision-card">
+          <span class="card-label">{item.title}</span>
+          <p>{item.text}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="page-section">
+    <div class="container long-copy-card">
+      <p class="section-kicker">What I am aiming toward</p>
+      <h2>Bridging research ideas and everyday usefulness.</h2>
+      <p>
+        The work I want to do sits in the space between model capability and human clarity. That means
+        retrieval systems that can be trusted, evaluation loops that expose real weaknesses, and interfaces
+        that help people understand rather than just generate. I do not want AI systems to feel magical
+        from a distance and confusing up close.
+      </p>
+      <p>
+        Over time, I want to get better at building tools that make knowledge more navigable: systems for
+        reasoning over documents, graph-structured information, and messy real-world questions that do not
+        arrive in clean benchmark form.
+      </p>
+    </div>
+  </section>
+</SiteLayout>

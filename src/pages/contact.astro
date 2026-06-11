@@ -1,0 +1,36 @@
+---
+import SiteLayout from "../layouts/SiteLayout.astro";
+import { contactMethods, personalInfo } from "../data/site";
+---
+
+<SiteLayout
+  title="Contact"
+  description={`How to contact ${personalInfo.name}.`}
+>
+  <section class="page-section subpage-hero">
+    <div class="container narrow-stack">
+      <p class="eyebrow">Contact</p>
+      <h1>Reach out if you want to talk about projects, research, or collaboration.</h1>
+      <p class="hero-body">
+        Email is the best place to start. If you want to look around first, GitHub and Twitter are here too.
+      </p>
+    </div>
+  </section>
+
+  <section class="page-section">
+    <div class="container contact-methods">
+      {contactMethods.map((item) => (
+        <article class="destination-card contact-card">
+          <div>
+            <span class="card-label">{item.label}</span>
+            <h3>{item.value}</h3>
+            <p>{item.note}</p>
+          </div>
+          <a href={item.href} target={item.href.startsWith("mailto:") ? undefined : "_blank"} rel="noopener">
+            Open
+          </a>
+        </article>
+      ))}
+    </div>
+  </section>
+</SiteLayout>
