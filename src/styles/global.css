@@ -159,9 +159,9 @@ a {
 
 .hero-main h1,
 .subpage-hero h1 {
-  font-size: clamp(2.9rem, 6vw, 4.8rem);
-  line-height: 0.95;
-  max-width: 12ch;
+  font-size: clamp(3.2rem, 7vw, 5.4rem);
+  line-height: 0.9;
+  max-width: 9ch;
 }
 
 .eyebrow,
@@ -176,9 +176,25 @@ a {
 
 .hero-lead {
   max-width: 42rem;
-  margin-top: 1.3rem;
+  margin-top: 1.1rem;
   font-size: 1.16rem;
   color: var(--ink);
+}
+
+.hero-role {
+  display: grid;
+  gap: 0.35rem;
+  max-width: 34rem;
+  margin-top: 1rem;
+  font-family: var(--font-heading);
+  font-size: clamp(1.35rem, 2.8vw, 2rem);
+  line-height: 1.08;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.hero-role span {
+  display: block;
 }
 
 .hero-body,
@@ -537,7 +553,11 @@ a {
 
   .hero-main h1,
   .subpage-hero h1 {
-    font-size: clamp(2.2rem, 12vw, 3.4rem);
+    font-size: clamp(3.1rem, 15vw, 4.4rem);
+  }
+
+  .hero-role {
+    font-size: clamp(1.2rem, 6vw, 1.55rem);
   }
 
   .profile-photo {
